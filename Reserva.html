@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Reserva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("img/Restaurante.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #c60000;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            background-color: #c60000;
+            color: #fff;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #805a3b;
+        }
+
+        .back-button {
+            margin-top: 10px;
+            background-color: #555;
+        }
+
+        .back-button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reservar Mesa</h1>
+        <form id="reservation-form" action="process_reservation.php" method="POST">
+            <label for="name">Nombre completo:</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="phone">Teléfono:</label>
+            <input type="text" id="phone" name="phone" required>
+        
+            <label for="date">Fecha de la reserva:</label>
+            <input type="date" id="date" name="date" required>
+        
+            <label for="time">Hora de la reserva:</label>
+            <input type="time" id="time" name="time" required>
+        
+            <label for="guests">Número de personas:</label>
+            <input type="number" id="guests" name="guests" min="1" required>
+        
+            <label for="dish">Selecciona tu plato:</label>
+            <select id="dish" name="dish[]" multiple required>
+                <option value="Bandera Dominicana">Bandera Dominicana</option>
+                <option value="Sancocho">Sancocho</option>
+                <option value="Mangú">Mangú</option>
+                <option value="Mofongo">Mofongo</option>
+                <option value="Lasagna">Lasagna</option>
+            </select>
+        
+            <button type="submit">Confirmar Reserva</button>
+        </form>
+        
+        <button class="back-button" onclick="goBack()">Volver al Inicio</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
