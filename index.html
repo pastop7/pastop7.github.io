@@ -37,28 +37,45 @@
         }
 
         nav {
-            display: flex;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-        }
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
 
-        nav a {
-            color: rgb(255, 255, 255);
-            text-decoration: none;
-            font-size: 18px;
-            margin: 0 15px;
-            padding: 10px;
-            transition: color 0.3s;
-        }
+.nav-links {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
-        nav a:hover {
-            color: #c60000;
-        }
+.nav-links a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 15px;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #c60000;
+}
+
+/* Botón hamburguesa */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    background: transparent;
+    border: none;
+    padding: 5px;
+}
 
         .textos-header h1 {
             font-size: 50px;
@@ -73,19 +90,18 @@
         }
 
         /* ===== BOTÓN DESTACADO ===== */
-        nav a[href="Reserva.html"] {
-            background-color: #c60000;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.3s;
-        }
+        .nav-links a[href="Reserva.html"] {
+    background-color: #c60000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
+}
 
-        nav a[href="Reserva.html"]:hover {
-            background-color: #ff4747;
-            transform: scale(1.1);
-        }
-
+.nav-links a[href="Reserva.html"]:hover {
+    background-color: #ff4747;
+    transform: scale(1.1);
+}
         /* ===== CONTENEDORES GENERALES ===== */
         .contenedor {
             padding: 60px 0;
@@ -287,9 +303,41 @@
             transform: scale(1.1);
             background: #1EBE5D;
         }
-        
+        /* Media queries para el menú responsive */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 200;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 80px;
+        transition: right 0.3s ease;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        margin: 15px 0;
+        font-size: 20px;
+    }
+}
         /* ===== MEDIA QUERIES ===== */
-        @media screen and (max-width:900px) {
+        @media screen and (max-width:800px) {
             header {
                 background-position: center;
             }
@@ -328,10 +376,12 @@
         }
 
         @media screen and (max-width:500px) {
-            nav {
-                text-align: center;
-                padding: 30px 0 0 0;
-            }
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    }
 
             nav > a {
                 margin-right: 5px;
@@ -399,10 +449,13 @@
 <body>
     <header>
         <nav>
-            <a href="index.html">Inicio</a>
-            <a href="about.html">Acerca de</a>
-            <a href="Reserva.html">Reserva tu Plato</a>
-            <a href="#contacto">Contacto</a>
+            <button class="menu-toggle">☰</button>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="about.html">Acerca de</a>
+                <a href="Reserva.html">Reserva tu Plato</a>
+                <a href="#contacto">Contacto</a>
+            </div>
         </nav>
         <section class="textos-header">
             <h1>Le Jardin Gourmet</h1>
@@ -530,5 +583,30 @@
     <a id="chatbot" href="https://wa.me/8094498418?text=Hola,%20quiero%20más%20información%20sobre%20Le%20Jardin%20Gourmet" target="_blank">
         💬 Chat en WhatsApp
     </a>
+    <script>
+        // JavaScript para el menú hamburguesa
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    
+        // Cerrar el menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    
+        // Cerrar el menú al hacer clic fuera de él
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) || event.target === menuToggle) {
+                return;
+            }
+            
+            document.querySelector('.nav-links').classList.remove('active');
+        });
+    </script>
 </body>
 </html>
