@@ -3,47 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Acerca de - Le Jardin Gourmet</title>
+    <link rel="shortcut icon" href="img/Restaurante.jpg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
     <style>
-        /* Estilos generales */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #431849;
-            color: #f8f1e5;
+        /* Reset de estilos */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+            background-color: #431849;
+            color: #f8f1e5;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: url('img/Restaurante.jpg') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .nav-links a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 15px;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c60000;
+        }
+
+        /* Botón hamburguesa */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            background: transparent;
+            border: none;
+            padding: 5px;
+        }
+
+        .textos-header h1 {
+            font-size: 50px;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .textos-header h2 {
+            font-size: 30px;
+            font-weight: 300;
+            color: #fff;
+        }
+
+        /* ===== BOTÓN DESTACADO ===== */
+        .nav-links a[href="Reserva.html"] {
+            background-color: #c60000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .nav-links a[href="Reserva.html"]:hover {
+            background-color: #ff4747;
+            transform: scale(1.1);
+        }
+
+        /* ===== CONTENEDORES GENERALES ===== */
+        .contenedor {
+            padding: 60px 0;
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .titulo {
+            color: #ffffff;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        /* ===== SECCIÓN MISIÓN Y VISIÓN ===== */
+        .mision-vision {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .card-info {
+            width: 48%;
+            background: #5f1818;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-info h3 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #c60000;
+            padding-bottom: 10px;
+        }
+
+        .card-info p {
+            text-align: justify;
+        }
+
+        /* ===== HISTORIA ===== */
+        .historia {
+            background: rgba(77, 6, 134, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .historia h3 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #c60000;
+            padding-bottom: 10px;
+        }
+
+        .historia p {
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        /* ===== EQUIPO ===== */
+        .equipo {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .miembro {
+            width: 32%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .miembro img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #c60000;
+            margin-bottom: 15px;
+        }
+
+        .miembro h4 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .miembro p {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        /* ===== VALORES ===== */
+        .valores {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .valor {
+            width: 30%;
+            background: #5f1818;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .valor h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #c60000;
+            padding-bottom: 10px;
+        }
+
+        .valor p {
+            font-size: 14px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #070707;
+            padding: 60px 0 30px 0;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .contenedor-footer {
+            display: flex;
+            width: 90%;
+            justify-content: space-evenly;
+            margin: auto;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .content-foo {
             text-align: center;
         }
-        header {
-            background: #c60000;
-            padding: 20px;
-            color: white;
+
+        .content-foo h4 {
+            color: #fff;
+            border-bottom: 3px solid #c60000;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .content-foo p {
+            color: #ccc;
+        }
+
+        .titulo-final {
+            text-align: center;
             font-size: 24px;
+            margin: 20px 0 0 0;
+            color: #9e9797;
         }
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            color: #333;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
-            background: #c60000;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background: #ff4747;
-        }
-        /* Estilos del botón de WhatsApp */
-        #whatsapp-chat {
+
+        /* ===== BOTÓN DE WHATSAPP ===== */
+        #chatbot {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -57,25 +287,144 @@
             font-weight: bold;
             transition: transform 0.3s;
         }
-        #whatsapp-chat:hover {
+
+        #chatbot:hover {
             transform: scale(1.1);
             background: #1EBE5D;
+        }
+
+        /* Media queries para el menú responsive */
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                z-index: 200;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.9);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 80px;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 20px;
+            }
+
+            .card-info {
+                width: 100%;
+            }
+
+            .miembro, .valor {
+                width: 48%;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .miembro, .valor {
+                width: 100%;
+            }
+
+            .textos-header h1 {
+                font-size: 35px;
+            }
+
+            .textos-header h2 {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>Le Jardin Gourmet - Acerca de Nosotros</header>
-    <div class="container">
-        <h2>Nuestra Historia</h2>
-        <p>Le Jardin Gourmet nació con la pasión de ofrecer experiencias culinarias únicas, fusionando ingredientes frescos con técnicas innovadoras.</p>
-        <h2>Nuestros Valores</h2>
-        <p>Nos enfocamos en la calidad, la atención al cliente y la creatividad en cada plato.</p>
-        <a href="index.html" class="btn">Volver al Inicio</a>
-    </div>
-    
-    <!-- Botón de Chat con WhatsApp -->
-    <a id="whatsapp-chat" href="https://wa.me/8292465349?text=Hola,%20quiero%20más%20información%20sobre%20Le%20Jardin%20Gourmet" target="_blank">
-        💬 Chat en WhatsApp
-    </a>
-</body>
-</html>
+    <header>
+        <nav>
+            <button class="menu-toggle">☰</button>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="about.html">Acerca de</a>
+                <a href="Reserva.html">Reserva tu Plato</a>
+                <a href="Menu.html">Menu Completo</a>
+            </div>
+        </nav>
+        <section class="textos-header">
+            <h1>Acerca de Nosotros</h1>
+            <h2>Le Jardin Gourmet</h2>
+        </section>
+    </header>
+
+    <main>
+        <section class="contenedor">
+            <h2 class="titulo">Nuestra Pasión por la Gastronomía</h2>
+            
+            <div class="mision-vision">
+                <div class="card-info">
+                    <h3>Misión</h3>
+                    <p>En Le Jardin Gourmet nos dedicamos a ofrecer experiencias culinarias excepcionales que deleiten todos los sentidos. Buscamos crear momentos inolvidables a través de platos elaborados con ingredientes frescos y de la más alta calidad, brindando un servicio personalizado y atento en un ambiente acogedor y elegante. Nos comprometemos a superar las expectativas de nuestros clientes en cada visita, honrando las tradiciones culinarias mientras exploramos nuevas fronteras gastronómicas.</p>
+                </div>
+                
+                <div class="card-info">
+                    <h3>Visión</h3>
+                    <p>Aspiramos a ser reconocidos como el destino gastronómico preferido en San Cristóbal, República Dominicana, destacándonos por nuestra innovación culinaria, excelencia en el servicio y compromiso con la sostenibilidad. Buscamos expandir nuestra propuesta gastronómica mientras mantenemos la esencia y los valores que nos caracterizan, convirtiendo cada comida en una celebración de sabores, aromas y texturas que inspiren y satisfagan a nuestros comensales.</p>
+                </div>
+            </div>
+            
+            <div class="historia">
+                <h3>Nuestra Historia</h3>
+                <p>Le Jardin Gourmet nació en 2010 de la pasión por la gastronomía del chef Juan Martínez, quien después de formarse en prestigiosas escuelas culinarias de Europa, decidió regresar a su ciudad natal para crear un espacio donde la cocina tradicional dominicana se fusionara con técnicas y sabores internacionales.</p>
+                
+                <p>Lo que comenzó como un pequeño restaurante con capacidad para 30 comensales, ha crecido hasta convertirse en un referente gastronómico en San Cristóbal. Ampliamos nuestras instalaciones en 2015, incorporando un hermoso jardín que da nombre a nuestro restaurante, donde los clientes pueden disfrutar de su comida en un entorno natural y relajante.</p>
+                
+                <p>A lo largo de los años, hemos sido reconocidos con diversos premios por nuestra propuesta gastronómica innovadora y nuestro compromiso con la calidad. En 2018, fuimos galardonados como "Mejor Restaurante de Fusión" en los Premios Gastronómicos Nacionales, un reconocimiento que nos enorgullece y nos impulsa a seguir mejorando cada día.</p>
+            </div>
+            
+            <h2 class="titulo">Nuestro Equipo</h2>
+            <div class="equipo">
+                <div class="miembro">
+                    <img src="img/chef1.jpg" alt="Chef Principal">
+                    <h4>Juan Martínez</h4>
+                    <p>Chef Principal y Fundador</p>
+                </div>
+                
+                <div class="miembro">
+                    <img src="img/chef2.jpg" alt="Chef de Postres">
+                    <h4>Ana Gómez</h4>
+                    <p>Chef de Postres</p>
+                </div>
+                
+                <div class="miembro">
+                    <img src="img/manager.jpg" alt="Gerente">
+                    <h4>Carlos Rodríguez</h4>
+                    <p>Gerente General</p>
+                </div>
+            </div>
+            
+            <h2 class="titulo">Nuestros Valores</h2>
+            <div class="valores">
+                <div class="valor">
+                    <h4>Excelencia</h4>
+                    <p>Nos esforzamos por alcanzar la perfección en cada plato, en cada servicio y en cada detalle de la experiencia de nuestros clientes.</p>
+                </div>
+                
+                <div class="valor">
+                    <h4>Creatividad</h4>
+                    <p>Innovamos constantemente, explorando nuevas combinaciones de sabores y técnicas culinarias para sorprender a nuestros comensales.</p>
+                </div>
+                
+                <div class="valor">
+                    <h4>Sostenibilidad</h4>
+                    <p>Nos comprometemos con prácticas responsables, utilizando ingredientes locales y de temporada, reduciendo el desperdicio

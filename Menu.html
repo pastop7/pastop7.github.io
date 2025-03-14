@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menú Completo - Le Jardin Gourmet</title>
+    <link rel="shortcut icon" href="img/Restaurante.jpg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
+    <style>
+        /* Reset de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+            background-color: #431849;
+            color: #f8f1e5;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: url('img/Restaurante.jpg') no-repeat center center/cover;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .nav-links a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 15px;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c60000;
+        }
+
+        /* Botón hamburguesa */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            background: transparent;
+            border: none;
+            padding: 5px;
+        }
+
+        .textos-header h1 {
+            font-size: 50px;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .textos-header h2 {
+            font-size: 30px;
+            font-weight: 300;
+            color: #fff;
+        }
+
+        /* ===== BOTÓN DESTACADO ===== */
+        .nav-links a[href="Reserva.html"] {
+            background-color: #c60000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .nav-links a[href="Reserva.html"]:hover {
+            background-color: #ff4747;
+            transform: scale(1.1);
+        }
+
+        /* ===== CONTENEDORES GENERALES ===== */
+        .contenedor {
+            padding: 60px 0;
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .titulo {
+            color: #ffffff;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        /* ===== MENÚ CATEGORÍAS ===== */
+        .menu-categorias {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .categoria-btn {
+            background: #4d0686;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .categoria-btn:hover {
+            background-color: #c60000;
+        }
+
+        .categoria-btn.active {
+            background-color: #c60000;
+        }
+
+        /* ===== PLATOS DEL MENÚ ===== */
+        .categoria-menu {
+            display: none;
+        }
+
+        .categoria-menu.active {
+            display: block;
+        }
+
+        .platos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .plato {
+            background: #5f1818;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .plato:hover {
+            transform: translateY(-10px);
+        }
+
+        .plato-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .plato-info {
+            padding: 20px;
+        }
+
+        .plato-titulo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .plato-titulo h3 {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .plato-precio {
+            font-size: 18px;
+            font-weight: bold;
+            color: #c60000;
+        }
+
+        .plato-descripcion {
+            font-size: 14px;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+        }
+
+        .plato-iconos {
+            display: flex;
+            gap: 10px;
+        }
+
+        .plato-icon {
+            background: #4d0686;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .icon-tooltip {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .icon-tooltip span {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+        }
+
+        .icon-tooltip:hover span {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* ===== LEYENDA DE ICONOS ===== */
+        .leyenda {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .leyenda-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .leyenda-icon {
+            background: #4d0686;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #070707;
+            padding: 60px 0 30px 0;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .contenedor-footer {
+            display: flex;
+            width: 90%;
+            justify-content: space-evenly;
+            margin: auto;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .content-foo {
+            text-align: center;
+        }
+
+        .content-foo h4 {
+            color: #fff;
+            border-bottom: 3px solid #c60000;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .content-foo p {
+            color: #ccc;
+        }
+
+        .titulo-final {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0 0 0;
+            color: #9e9797;
+        }
+
+        /* ===== BOTÓN DE WHATSAPP ===== */
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        #chatbot:hover {
+            transform: scale(1.1);
+            background: #1EBE5D;
+        }
+
+        /* Media queries para el menú responsive */
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                z-index: 200;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.9);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 80px;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 20px;
+            }
+
+            .platos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .menu-categorias {
+                flex-wrap: wrap;
+            }
+
+            .categoria-btn {
+                margin: 5px;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .platos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .titulo {
+                font-size: 24px;
+            }
+
+            .textos-header h1 {
+                font-size: 35px;
+            }
+
+            .textos-header h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <button class="menu-toggle">☰</button>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="about.html">Acerca de</a>
+                <a href="Reserva.html">Reserva tu Plato</a>
+                <a href="Menu.html">Menu Completo</a>
+            </div>
+        </nav>
+        <section class="textos-header">
+            <h1>Menú Completo</h1>
+            <h2>Le Jardin Gourmet</h2>
+        </section>
+    </header>
+
+    <main>
+        <section class="contenedor">
+            <h2 class="titulo">Nuestras Delicias Culinarias</h2>
+            
+            <div class="menu-categorias">
+                <button class="categoria-btn active" onclick="cambiarCategoria('entradas')">Entradas</button>
+                <button class="categoria-btn" onclick="cambiarCategoria('principales')">Platos Principales</button>
+                <button class="categoria-btn" onclick="cambiarCategoria('postres')">Postres</button>
+                <button class="categoria-btn" onclick="cambiarCategoria('bebidas')">Bebidas</button>
+            </div>
+
+            <!-- Entradas -->
+            <div id="entradas" class="categoria-menu active">
+                <div class="platos-grid">
+                    <!-- Entrada 1 -->
+                    <div class="plato">
+                        <img src="img/1.jpg" alt="Carpaccio de Res" class="plato-img">
+                        <div class="plato-info">
+                            <div class="plato-titulo">
+                                <h3>Carpaccio de Res</h3>
+                                <span class="plato-precio">RD$450</span>
+                            </div>
+                            <p class="plato-descripcion">Finas láminas de res importada con aceite de oliva extra virgen, queso parmesano y alcaparras.</p>
+                            <div class="plato-iconos">
+                                <div class="icon-tooltip">
+                                    <div class="plato-icon">GF</div>
+                                    <span>Sin Gluten</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Entrada 2 -->
+                    <div class="plato">
+                        <img src="img/2.jpg" alt="Croquetas de Jamón" class="plato-img">
+                        <div class="plato-info">
+                            <div class="plato-titulo">
+                                <h3>Croquetas de Jamón</h3>
+                                <span class="plato-precio">RD$380</span>
+                            </div>
+                            <p class="plato-descripcion">Crujientes por fuera y cremosas por dentro, elaboradas con jamón serrano español.</p>
+                            <div class="plato-iconos">
+                                <!-- Sin iconos especiales -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Entrada 3 -->
+                    <div class="plato">
+                        <img src="img/3.jpg" alt="Ensalada Mediterránea" class="plato-img">
+                        <div class="plato-info">
+                            <div class="plato-titulo">
+                                <h3>Ensalada Mediterránea</h3>
+                                <span class="plato-precio">RD$350</span>
+                            </div>
+                            <p class="plato-descripcion">Mix de lechugas, tomates cherry, aceitunas kalamata, queso feta y aderezo balsámico.</p>
+                            <div class="plato-iconos">
+                                <div class="icon-tooltip">
+                                    <div class="plato-icon">V</div>
+                                    <span>Vegetariano</span>
+                                </div>
+                                <div
