@@ -124,6 +124,7 @@
             display: flex;
             justify-content: center;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .categoria-btn {
@@ -131,7 +132,7 @@
             color: white;
             border: none;
             padding: 10px 20px;
-            margin: 0 10px;
+            margin: 5px 10px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
@@ -148,10 +149,20 @@
         /* ===== PLATOS DEL MENÚ ===== */
         .categoria-menu {
             display: none;
+            padding-top: 20px;
         }
 
         .categoria-menu.active {
             display: block;
+        }
+
+        .categoria-titulo {
+            color: #c60000;
+            font-size: 26px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px dashed #4d0686;
+            padding-bottom: 10px;
         }
 
         .platos-grid {
@@ -437,10 +448,11 @@
 
             <!-- Entradas -->
             <div id="entradas" class="categoria-menu active">
+                <h3 class="categoria-titulo">Entradas</h3>
                 <div class="platos-grid">
                     <!-- Entrada 1 -->
                     <div class="plato">
-                        <img src="img/1.jpg" alt="Carpaccio de Res" class="plato-img">
+                        <img src="img/Carpaccio de Lomo de Res con Parmesano y….jpeg" alt="Carpaccio de Res" class="plato-img">
                         <div class="plato-info">
                             <div class="plato-titulo">
                                 <h3>Carpaccio de Res</h3>
@@ -458,7 +470,7 @@
                     
                     <!-- Entrada 2 -->
                     <div class="plato">
-                        <img src="img/2.jpg" alt="Croquetas de Jamón" class="plato-img">
+                        <img src="img/Croquetas de Jamón.jpeg" alt="Croquetas de Jamón" class="plato-img">
                         <div class="plato-info">
                             <div class="plato-titulo">
                                 <h3>Croquetas de Jamón</h3>
@@ -473,7 +485,7 @@
                     
                     <!-- Entrada 3 -->
                     <div class="plato">
-                        <img src="img/3.jpg" alt="Ensalada Mediterránea" class="plato-img">
+                        <img src="img/Ensalada Mediterránea.jpeg" alt="Ensalada Mediterránea" class="plato-img">
                         <div class="plato-info">
                             <div class="plato-titulo">
                                 <h3>Ensalada Mediterránea</h3>
@@ -485,4 +497,156 @@
                                     <div class="plato-icon">V</div>
                                     <span>Vegetariano</span>
                                 </div>
-                                <div
+                                <div class="icon-tooltip">
+                                    <div class="plato-icon">GF</div>
+                                    <span>Sin Gluten</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platos Principales -->
+            <div id="principales" class="categoria-menu">
+                <h3 class="categoria-titulo">Platos Principales</h3>
+                <div class="platos-grid">
+                    <!-- Principal 1 -->
+                    <div class="plato">
+                        <img src="img/7.jpg" alt="Filete Mignon" class="plato-img">
+                        <div class="plato-info">
+                            <div class="plato-titulo">
+                                <h3>Filete Mignon</h3>
+                                <span class="plato-precio">RD$950</span>
+                            </div>
+                            <p class="plato-descripcion">Tierno corte de res importada, acompañado de puré de papas trufado y vegetales salteados.</p>
+                            <div class="plato-iconos">
+                                <div class="icon-tooltip">
+                                    <div class="plato-icon">GF</div>
+                                    <span>Sin Gluten</span>
+                                </div>
+                                <div class="icon-tooltip">
+                                    <div class="plato-icon">P</div>
+                                    <span>Popular</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Postres -->
+            <div id="postres" class="categoria-menu">
+                <h3 class="categoria-titulo">Postres</h3>
+                <div class="platos-grid">
+                    <!-- Postre 1 -->
+                    <div class="plato">
+                        <img src="img/11.jpg" alt="Tiramisú" class="plato-img">
+                        <div class="plato-info">
+                            <div class="plato-titulo">
+                                <h3>Tiramisú</h3>
+                                <span class="plato-precio">RD$320</span>
+                            </div>
+                            <p class="plato-descripcion">Clásico postre italiano con capas de bizcocho empapado en café, queso mascarpone y cacao.</p>
+                            <div class="plato-iconos">
+                                <div class="icon-tooltip">
+                                    <div class="plato-icon">V</div>
+                                    <span>Vegetariano</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bebidas -->
+            <div id="bebidas" class="categoria-menu">
+                <h3 class="categoria-titulo">Bebidas</h3>
+                <div class="platos-grid">
+                    <!-- Bebida 1 -->
+                    <div class="plato">
+                        <img src="img/15.jpg" alt="Sangría de la Casa" class="plato-img">
+                        <div class="plato-info">
+                            <div class="plato-titulo">
+                                <h3>Sangría de la Casa</h3>
+                                <span class="plato-precio">RD$280</span>
+                            </div>
+                            <p class="plato-descripcion">Refrescante bebida con vino tinto, frutas frescas y un toque de brandy. Vaso o jarra.</p>
+                            <div class="plato-iconos">
+                                <div class="icon-tooltip">
+                                    <div class="plato-icon">P</div>
+                                    <span>Popular</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leyenda de iconos -->
+            <div class="leyenda">
+                <div class="leyenda-item">
+                    <div class="leyenda-icon">V</div>
+                    <p>Vegetariano</p>
+                </div>
+                <div class="leyenda-item">
+                    <div class="leyenda-icon">GF</div>
+                    <p>Sin Gluten</p>
+                </div>
+                <div class="leyenda-item">
+                    <div class="leyenda-icon">P</div>
+                    <p>Popular</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foo">
+                <h4>Teléfono</h4>
+                <p>+1 809-555-1234</p>
+            </div>
+            <div class="content-foo">
+                <h4>Email</h4>
+                <p>info@lejardin.com</p>
+            </div>
+            <div class="content-foo">
+                <h4>Ubicación</h4>
+                <p>Av. Winston Churchill #103</p>
+            </div>
+        </div>
+        <h2 class="titulo-final">&copy; Le Jardin Gourmet 2025</h2>
+    </footer>
+
+    <a href="https://wa.me/1809555123" id="chatbot">Reserva por WhatsApp</a>
+
+    <script>
+        // Función para cambiar entre categorías del menú
+        function cambiarCategoria(categoria) {
+            // Ocultar todas las categorías
+            const categorias = document.querySelectorAll('.categoria-menu');
+            categorias.forEach(cat => {
+                cat.classList.remove('active');
+            });
+            
+            // Mostrar la categoría seleccionada
+            document.getElementById(categoria).classList.add('active');
+            
+            // Actualizar botones activos
+            const botones = document.querySelectorAll('.categoria-btn');
+            botones.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Activar el botón correspondiente
+            event.currentTarget.classList.add('active');
+        }
+
+        // Menú responsive
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
