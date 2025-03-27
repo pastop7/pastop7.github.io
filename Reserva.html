@@ -16,7 +16,7 @@
         }
 
         .container {
-            max-width: 500px;
+            max-width: 600px;
             margin: 50px auto;
             padding: 20px;
             background: rgba(255, 255, 255, 0.9);
@@ -24,7 +24,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
+        h1, h3, h4 {
             text-align: center;
             color: #c60000;
         }
@@ -78,6 +78,43 @@
             margin-top: -10px;
             margin-bottom: 10px;
         }
+
+        .category-section {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 15px;
+        }
+
+        .customization-section {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .customization-item {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .customization-item input {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .add-btn, .remove-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .remove-btn {
+            background-color: #f44336;
+        }
     </style>
 </head>
 <body>
@@ -101,17 +138,69 @@
         
             <label for="guests">Número de personas:</label>
             <input type="number" id="guests" name="guests" min="1" max="20" required>
-        
-            <label for="dish">Selecciona tu plato:</label>
-            <select id="dish" name="dish[]" multiple required>
-                <option value="Bandera Dominicana">Bandera Dominicana</option>
-                <option value="Sancocho">Sancocho</option>
-                <option value="Mangú">Mangú</option>
-                <option value="Mofongo">Mofongo</option>
-                <option value="Lasagna">Lasagna</option>
-                <option value="Langostinos con Miso">Langostinos con Miso</option>
-            </select>
-            <p class="help-text">Presiona Ctrl (o Cmd en Mac) para seleccionar múltiples platos</p>
+
+            <div class="category-section">
+                <h3>Entradas</h3>
+                <select name="entradas[]" multiple>
+                    <option value="Carpaccio de Res">Carpaccio de Res - RD$450</option>
+                    <option value="Croquetas de Jamón">Croquetas de Jamón - RD$380</option>
+                    <option value="Ensalada Mediterránea">Ensalada Mediterránea - RD$350</option>
+                </select>
+                <p class="help-text">Selecciona hasta 2 entradas (opcional)</p>
+            </div>
+
+            <div class="category-section">
+                <h3>Platos Principales</h3>
+                <select name="principales[]" multiple>
+                    <option value="Filete Mignon">Filete Mignon - RD$950</option>
+                    <option value="Salmón a la Parrilla">Salmón a la Parrilla - RD$850</option>
+                    <option value="Risotto de Hongos">Risotto de Hongos - RD$750</option>
+                </select>
+                <p class="help-text">Selecciona 1 plato principal</p>
+            </div>
+
+            <div class="category-section">
+                <h3>Postres</h3>
+                <select name="postres[]" multiple>
+                    <option value="Tiramisú">Tiramisú - RD$320</option>
+                    <option value="Cheesecake">Cheesecake - RD$300</option>
+                    <option value="Mousse de Chocolate">Mousse de Chocolate - RD$280</option>
+                </select>
+                <p class="help-text">Selecciona 1 postre (opcional)</p>
+            </div>
+
+            <div class="category-section">
+                <h3>Bebidas</h3>
+                <select name="bebidas[]" multiple>
+                    <option value="Sangría de la Casa">Sangría de la Casa - RD$280</option>
+                    <option value="Vino Tinto">Vino Tinto - RD$350</option>
+                    <option value="Mojito">Mojito - RD$250</option>
+                </select>
+                <p class="help-text">Selecciona hasta 2 bebidas (opcional)</p>
+            </div>
+
+            <div class="category-section">
+                <h3>Personalización de Platos</h3>
+                <div class="customization-section">
+                    <h4>Instrucciones Especiales</h4>
+                    <div id="customization-container">
+                        <div class="customization-item">
+                            <input type="text" name="customization[]" placeholder="Ej: Sin cebolla, extra queso, etc.">
+                            <button type="button" class="add-btn">+</button>
+                        </div>
+                    </div>
+                    <p class="help-text">Puedes añadir instrucciones específicas para tus platos</p>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3>Configuración de Mesa</h3>
+                <div class="customization-section">
+                    <h4>Solicitudes Especiales de Mesa</h4>
+                    <textarea name="table-requests" rows="4" placeholder="Ej: Mesa cerca de la ventana, mesa para celebración, necesitamos silla alta para bebé, etc."></textarea>
+                    <p class="help-text">Indícanos cualquier solicitud especial para tu mesa</p>
+                </div>
+            </div>
         
             <button type="submit" class="button">Confirmar Reserva</button>
         </form>
@@ -124,10 +213,44 @@
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('date').min = today;
         
+        // Personalización dinámica de platos
+        const customizationContainer = document.getElementById('customization-container');
+        
+        // Añadir nuevo campo de personalización
+        customizationContainer.addEventListener('click', function(e) {
+            if (e.target.classList.contains('add-btn')) {
+                const newItem = document.createElement('div');
+                newItem.classList.add('customization-item');
+                newItem.innerHTML = `
+                    <input type="text" name="customization[]" placeholder="Ej: Sin cebolla, extra queso, etc.">
+                    <button type="button" class="add-btn">+</button>
+                    <button type="button" class="remove-btn">-</button>
+                `;
+                customizationContainer.appendChild(newItem);
+            }
+            
+            // Eliminar campo de personalización
+            if (e.target.classList.contains('remove-btn')) {
+                e.target.closest('.customization-item').remove();
+            }
+        });
+
+        // Restrict selections for each category
+        document.querySelectorAll('select[multiple]').forEach(select => {
+            select.addEventListener('change', function() {
+                const maxSelections = this.name === 'entradas[]' || this.name === 'bebidas[]' ? 2 : 1;
+                
+                if (this.selectedOptions.length > maxSelections) {
+                    // Deselect the last selected option
+                    this.options[this.selectedOptions.length - 1].selected = false;
+                    alert(`Puedes seleccionar máximo ${maxSelections} opciones en esta categoría.`);
+                }
+            });
+        });
+        
         // Validar el formulario antes de enviar
         document.getElementById('reservation-form').addEventListener('submit', function(event) {
             const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
             
             // Verificar que la fecha no sea en el pasado
             if (date < today) {
@@ -137,12 +260,8 @@
             }
             
             // Crear una redirección a la página de confirmación (simulada)
-            // En un entorno real, esto se manejaría mejor desde el servidor
             const code = 'RES' + Math.floor(Math.random() * 10000);
             localStorage.setItem('reservationCode', code);
-            
-            // Aquí iría la lógica para procesar el formulario normalmente
-            // El código actual usa formspree, por lo que no modificamos ese comportamiento
         });
     </script>
 </body>
