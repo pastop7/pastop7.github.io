@@ -38,19 +38,30 @@
 
         nav {
     display: flex;
-    justify-content: center;
+    align-items: center;
     background: rgba(0, 0, 0, 0.7);
-    padding: 15px;
+    padding: 10px 20px;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
 }
 
+.logo-container {
+    flex: 0 0 auto; /* El logo no crecerá ni se encogerá */
+    margin-right: 20px;
+}
+
+.nav-logo {
+    height: 100px;
+    width: auto;
+}
+
 .nav-links {
+    flex: 1; /* Ocupa todo el espacio disponible */
     display: flex;
-    justify-content: center;
-    width: 100%;
+    justify-content: center; /* Centra los enlaces */
+    gap: 30px; /* Espacio entre los enlaces */
 }
 
 .nav-links a {
@@ -449,6 +460,9 @@
 <body>
     <header>
         <nav>
+            <div class="logo-container">
+                <img src="img/Logole.png" alt="Le Jardin Gourmet Logo" class="nav-logo">
+            </div>
             <button class="menu-toggle">☰</button>
             <div class="nav-links">
                 <a href="index.html">Inicio</a>
@@ -457,7 +471,6 @@
                 <a href="about.html">Acerca de</a>
             </div>
         </nav>
-        <img src="img/Logole.png" alt="Le Jardin Gourmet Logo" style="max-width: 200px; display: block; margin: 0 auto 20px;">
         <section class="textos-header">
             <h1>Le Jardin Gourmet</h1>
             <h2>Restaurants</h2>
