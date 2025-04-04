@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Le Jardin Gourmet</title>
+    <link rel="shortcut icon" href="img/Logole.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
+    <style>
+        /* Reset de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+            background-color: #431849;
+            color: #f8f1e5;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: url('img/Restaurante.jpg') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        nav {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo-container {
+    flex: 0 0 auto; /* El logo no crecerá ni se encogerá */
+    margin-right: 20px;
+}
+
+.nav-logo {
+    height: 100px;
+    width: auto;
+}
+
+.nav-links {
+    flex: 1; /* Ocupa todo el espacio disponible */
+    display: flex;
+    justify-content: center; /* Centra los enlaces */
+    gap: 30px; /* Espacio entre los enlaces */
+}
+
+.nav-links a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 15px;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #c60000;
+}
+
+/* Botón hamburguesa */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    background: transparent;
+    border: none;
+    padding: 5px;
+}
+
+        .textos-header h1 {
+            font-size: 50px;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .textos-header h2 {
+            font-size: 30px;
+            font-weight: 300;
+            color: #fff;
+        }
+
+        /* ===== BOTÓN DESTACADO ===== */
+        .nav-links a[href="Reserva.html"] {
+    background-color: #c60000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.nav-links a[href="Reserva.html"]:hover {
+    background-color: #ff4747;
+    transform: scale(1.1);
+}
+        /* ===== CONTENEDORES GENERALES ===== */
+        .contenedor {
+            padding: 60px 0;
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .titulo {
+            color: #ffffff;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        /* ===== SECCIÓN SOBRE NOSOTROS ===== */
+        .contenedor-sobre-nosotros {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .imagen-about-us {
+            width: 48%;
+        }
+
+        .contenido-textos {
+            width: 48%;
+        }
+
+        .contenido-textos h3 {
+            margin-bottom: 15px;
+        }
+
+        .contenido-textos h3 span {
+            background: #4d0686;
+            color: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+            padding: 2px;
+            box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+            margin-right: 5px;
+        }
+
+        .contenido-textos p {
+            padding: 0px 0px 30px 15px;
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        /* ===== GALERÍA ===== */
+        .portafolio {
+            background: #5f1818;
+        }
+
+        .galeria-port {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+
+        .imagen-port {
+            width: 24%;
+            margin-bottom: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+        }
+
+        .imagen-port > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hover-galeria {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            transform: scale(0);
+            background: hsla(273, 91%, 27%, 0.7);
+            transition: transform .5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .hover-galeria img {
+            width: 50px;
+        }
+
+        .hover-galeria p {
+            color: #fff;
+        }
+
+        .imagen-port:hover .hover-galeria {
+            transform: scale(1);
+        }
+
+        /* ===== RESEÑAS DE CLIENTES ===== */
+        .cards {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .card {
+            background: #4d0686;
+            display: flex;
+            width: 46%;
+            height: 300px;
+            align-items: center;
+            justify-content: space-evenly;
+            border-radius: 5px;
+            box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.6);
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .contenido-texto-card {
+            width: 60%;
+            color: #fff;
+        }
+
+        .contenido-texto-card p {
+            font-weight: 300;
+            padding-top: 5px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #070707;
+            padding: 60px 0 30px 0;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .contenedor-footer {
+            display: flex;
+            width: 90%;
+            justify-content: space-evenly;
+            margin: auto;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .content-foo {
+            text-align: center;
+        }
+
+        .content-foo h4 {
+            color: #fff;
+            border-bottom: 3px solid #c60000;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .content-foo p {
+            color: #ccc;
+        }
+
+        .titulo-final {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0 0 0;
+            color: #9e9797;
+        }
+
+        /* ===== BOTÓN DE WHATSAPP ===== */
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        #chatbot:hover {
+            transform: scale(1.1);
+            background: #1EBE5D;
+        }
+        /* Media queries para el menú responsive */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 200;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 80px;
+        transition: right 0.3s ease;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        margin: 15px 0;
+        font-size: 20px;
+    }
+}
+        /* ===== MEDIA QUERIES ===== */
+        @media screen and (max-width:800px) {
+            header {
+                background-position: center;
+            }
+
+            .contenedor-sobre-nosotros {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .sobre-nosotros .contenido-textos {
+                width: 90%;
+            }
+
+            .imagen-about-us {
+                width: 90%;
+            }
+
+            .imagen-port {
+                width: 44%;
+            }
+
+            .cards {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .cards .card {
+                width: 90%;
+            }
+
+            .cards .card:first-child {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media screen and (max-width:500px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    }
+
+            nav > a {
+                margin-right: 5px;
+            }
+
+            .textos-header h1 {
+                font-size: 35px;
+            }
+
+            .textos-header h2 {
+                font-size: 20px;
+            }
+
+            .imagen-about-us {
+                margin-bottom: 60px;
+                width: 99%;
+            }
+
+            .sobre-nosotros .contenido-textos {
+                width: 95%;
+            }
+
+            .imagen-port {
+                width: 95%;
+            }
+
+            .cards .card {
+                height: 450px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cards .card img {
+                width: 90px;
+                height: 90px;
+            }
+
+            .contenedor-footer {
+                flex-direction: column;
+                border: none;
+            }
+
+            .content-foo {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .content-foo h4 {
+                border: none;
+            }
+
+            .content-foo p {
+                color: #ccc;
+                border-bottom: 1px solid #f2f2f2;
+                padding-bottom: 20px;
+            }
+
+            .titulo-final {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="img/Logole.png" alt="Le Jardin Gourmet Logo" class="nav-logo">
+            </div>
+            <button class="menu-toggle">☰</button>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="Menu.html">Menu Completo</a>
+                <a href="Reserva.html">Reserva tu Plato</a>
+                <a href="about.html">Acerca de</a>
+            </div>
+        </nav>
+        <section class="textos-header">
+            <h1>Le Jardin Gourmet</h1>
+            <h2>Restaurants</h2>
+        </section>
+    </header>
+    <main>
+        <section class="contenedor sobre-nosotros">
+            <h2 class="titulo">Plato de la Semana</h2>
+            <div class="contenedor-sobre-nosotros">
+                <img src="img/Langostinos coon miso.jpg" alt="Langostinos con Miso" class="imagen-about-us">
+                <div class="contenido-textos">
+                    <h3><span>1</span>Langostinos con Miso</h3>
+                    <p>Los langostillos con miso son un platillo delicioso que combina la suavidad y sabor delicado de los langostinos con la intensidad umami del miso. Los langostillos, ligeramente salteados o cocidos, se sirven con una salsa de miso, que puede ser de tipo blanco o rojo, dependiendo de la preferencia. Esta salsa generalmente se elabora con pasta de miso, caldo, ajo, jengibre y a veces un toque de azúcar o mirin para equilibrar los sabores. El platillo tiene una textura tierna y jugosa, con un toque salado y ligeramente dulce, perfecto para quienes disfrutan de sabores asiáticos. Puedes acompañarlo con arroz o verduras al vapor para un plato completo.</p>
+                </div>
+            </div>
+        </section>
+        <section class="portafolio">
+            <div class="contenedor">
+                <h2 class="titulo">Más Platos</h2>
+                <div class="galeria-port">
+                    <div class="imagen-port">
+                        <img src="img/Carpaccio de Lomo de Res con Parmesano y….jpeg" alt="Plato 1">
+                        <div class="hover-galeria">
+                            <p>Sabroso</p>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="img/Carrilleras de Cerdo.jpg" alt="Plato 2">
+                        <div class="hover-galeria">
+                            <div class="nav-links">
+                                <a href="Menu.html">
+                                    <p>Sabroso</p></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="img/Croquetas de Jamón.jpeg" alt="Plato 3">
+                        <div class="hover-galeria">
+                            <div class="nav-links">
+                                <a href="Menu.html"><p>Sabroso</p></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="img/Ensalada Mediterránea.jpeg" alt="Plato 4">
+                        <div class="hover-galeria">
+                            <div class="nav-links">
+                                <a href="Menu.html"><p>Sabroso</p></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="img/Filete Mignon.jpeg" alt="Plato 5">
+                        <div class="hover-galeria">
+                            <div class="nav-links">
+                                <a href="Menu.html"><p>Sabroso</p></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="img/Sangría de la Casa.jpeg" alt="Plato 6">
+                        <div class="hover-galeria">
+                            <div class="nav-links">
+                                <a href="Menu.html"><p>Sabroso</p></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="img/Tiramisú.jpeg" alt="Plato 7">
+                        <div class="hover-galeria">
+                            <div class="nav-links">
+                                <a href="Menu.html"><p>Sabroso</p></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imagen-port">
+                        <img src="img/8.jpg" alt="Plato 8">
+                        <div class="hover-galeria">
+                            <div class="nav-links">
+                                <a href="Menu.html"><p>Sabroso</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="clientes contenedor">
+            <h2 class="titulo">Qué dicen nuestros clientes</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="img/Carlos julio.jpeg" alt="Cliente 1">
+                    <div class="contenido-texto-card">
+                        <h4>Carlos Julio R.</h4>
+                        <p>⭐⭐⭐⭐⭐ 
+                            ¡Exquisito y único!
+                            "Los langostillos con miso fueron una experiencia culinaria increíble. Los sabores estaban perfectamente balanceados: la frescura de los langostillos combinada con la intensidad del miso me dejó sin palabras.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="img/Karla G..jpeg" alt="Cliente 2">
+                    <div class="contenido-texto-card">
+                        <h4>Karla G.</h4>
+                        <p>⭐⭐⭐⭐⭐ - ¡Un sabor que transporta!
+                            "Este platillo es una verdadera joya. Los langostillos estaban perfectamente cocinados, jugosos y llenos de sabor, mientras que la salsa de miso añadía un toque único que elevó el plato. Es como un viaje directo a Japón en cada bocado. ¡No puedo esperar para volver a disfrutarlo!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="contacto">
+        <div class="contenedor-footer">
+            <div class="content-foo">
+                <h4>Teléfono</h4>
+                <p>+18498179436</p>
+            </div>
+            <div class="content-foo">
+                <h4>Email</h4>
+                <p>LeJardinGourmet@gmail.com</p>
+            </div>
+            <div class="content-foo">
+                <h4>Ubicación</h4>
+                <p>San Cristobal Rep. Dom.</p>
+            </div>
+        </div>
+        <h2 class="titulo-final">&copy; Le Jardin Gourmet/Restaurants</h2>
+    </footer>
+    
+    <!-- Botón de Chatbot con WhatsApp -->
+    <a id="chatbot" href="https://wa.me/8498179436?text=Hola,%20quiero%20más%20información%20sobre%20Le%20Jardin%20Gourmet" target="_blank">
+        💬 Chat en WhatsApp
+    </a>
+    <script>
+        // JavaScript para el menú hamburguesa
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    
+        // Cerrar el menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    
+        // Cerrar el menú al hacer clic fuera de él
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) || event.target === menuToggle) {
+                return;
+            }
+            
+            document.querySelector('.nav-links').classList.remove('active');
+        });
+    </script>
+</body>
+</html>
