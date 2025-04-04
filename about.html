@@ -179,11 +179,25 @@
             margin-top: 40px;
         }
 
-        .miembro {
-            width: 32%;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        /* Para escritorio (3 en una fila) */
+.miembro {
+    width: 32%;
+    margin-bottom: 30px;
+}
+
+/* Para tabletas (2 en una fila) */
+@media screen and (max-width: 768px) {
+    .miembro {
+        width: 48%;
+    }
+}
+
+/* Para móviles (1 en una fila) */
+@media screen and (max-width: 500px) {
+    .miembro {
+        width: 100%;
+    }
+}
 
         .miembro img {
             width: 150px;
@@ -394,42 +408,43 @@
             </div>
             
             <h2 class="titulo">Nuestro Equipo</h2>
-            <div class="equipo">
-                <div class="miembro">
-                    <img src="img/Manager.jpeg" alt="Chef Principal">
-                    <h4>Luis David Rivera</h4>
-                    <p>Chef Principal y Fundador</p>
-                </div>
-                
-                <div class="miembro">
-                    <img src="img/Chef2.jpeg" alt="Chef de Postres">
-                    <h4>Mariely Zabala</h4>
-                    <p>Coordinadora general</p>
-                </div>
-                
-                <div class="miembro">
-                    <img src="img/Chef1.jpeg" alt="Gerente">
-                    <h4>Frayner Beltre</h4>
-                    <p>Gerente General</p>
-                </div>
-                <div class="miembro">
-                    <img src="img/Chef3.jpeg" alt="Gerente">
-                    <h4> Loisha Lara</h4>
-                    <p>Secretaria</p>
-                </div>
-            </div>
-            <div class="miembro">
-                <img src="img/Ros.jpeg" alt="Gerente">
-                <h4> Rocio Valdez</h4>
-                <p>Secretaria</p>
-            </div>
-        </div>
-        <div class="miembro">
-            <img src="img/Willy.jpeg" alt="Gerente">
-            <h4> Willianny Jimenez </h4>
-            <p>Secretaria</p>
-        </div>
+<div class="equipo">
+    <div class="miembro">
+        <img src="img/Manager.jpeg" alt="Chef Principal">
+        <h4>Luis David Rivera</h4>
+        <p>Chef Principal y Fundador</p>
     </div>
+    
+    <div class="miembro">
+        <img src="img/Chef2.jpeg" alt="Chef de Postres">
+        <h4>Mariely Zabala</h4>
+        <p>Coordinadora general</p>
+    </div>
+    
+    <div class="miembro">
+        <img src="img/Chef1.jpeg" alt="Gerente">
+        <h4>Frayner Beltre</h4>
+        <p>Gerente General</p>
+    </div>
+
+    <div class="miembro">
+        <img src="img/Chef3.jpeg" alt="Secretaria">
+        <h4>Loisha Lara</h4>
+        <p>Secretaria</p>
+    </div>
+    
+    <div class="miembro">
+        <img src="img/Ros.jpeg" alt="Diseño">
+        <h4>Rocio Valdez</h4>
+        <p>Secretaria</p>
+    </div>
+    
+    <div class="miembro">
+        <img src="img/Willy.jpeg" alt="Caminante">
+        <h4>Willianny Jimenez</h4>
+        <p>Secretaria</p>
+    </div>
+</div>
             <h2 class="titulo">Nuestros Valores</h2>
             <div class="valores">
                 <div class="valor">
