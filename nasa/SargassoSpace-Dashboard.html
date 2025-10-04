@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SargassoSpace™ - Dashboard de Monitoreo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(300px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(300px) rotate(-360deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .animate-orbit {
+            animation: orbit 20s linear infinite;
+        }
+        .animate-pulse-custom {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white min-h-screen">
+    
+    <div class="p-4 md:p-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-4">
+                <div>
+                    <h1 class="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                        SargassoSpace™
+                    </h1>
+                    <p class="text-gray-400 mt-1">Sistema de Monitoreo y Gestión de Recursos Marinos</p>
+                </div>
+                <div class="flex items-center gap-2 bg-green-900 bg-opacity-50 px-4 py-2 rounded-lg border border-green-500">
+                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                    <span class="text-green-300 font-semibold">Sistema Operativo</span>
+                </div>
+            </div>
+
+            <!-- Métricas principales -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="bg-gradient-to-br from-cyan-900 to-blue-900 p-4 rounded-lg border border-cyan-700">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/>
+                        </svg>
+                        <span class="text-gray-300 text-sm">Tonelaje Total</span>
+                    </div>
+                    <div class="text-2xl font-bold text-white">1,560</div>
+                    <div class="text-xs text-cyan-400 mt-1">toneladas detectadas</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-orange-900 to-red-900 p-4 rounded-lg border border-orange-700">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                        <span class="text-gray-300 text-sm">Alertas</span>
+                    </div>
+                    <div class="text-2xl font-bold text-white">3</div>
+                    <div class="text-xs text-orange-400 mt-1">alertas activas</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-900 to-pink-900 p-4 rounded-lg border border-purple-700">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18"/>
+                        </svg>
+                        <span class="text-gray-300 text-sm">Satélites</span>
+                    </div>
+                    <div class="text-2xl font-bold text-white">3</div>
+                    <div class="text-xs text-purple-400 mt-1">operando</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-900 to-emerald-900 p-4 rounded-lg border border-green-700">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                        <span class="text-gray-300 text-sm">Cobertura</span>
+                    </div>
+                    <div class="text-2xl font-bold text-white">92%</div>
+                    <div class="text-xs text-green-400 mt-1">promedio</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-yellow-900 to-orange-900 p-4 rounded-lg border border-yellow-700">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="text-gray-300 text-sm">Ingresos Proy.</span>
+                    </div>
+                    <div class="text-2xl font-bold text-white">$125K</div>
+                    <div class="text-xs text-yellow-400 mt-1">este mes</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-900 to-indigo-900 p-4 rounded-lg border border-blue-700">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        </svg>
+                        <span class="text-gray-300 text-sm">Áreas</span>
+                    </div>
+                    <div class="text-2xl font-bold text-white">12</div>
+                    <div class="text-xs text-blue-400 mt-1">monitoreadas</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
+            <button onclick="showTab('mapa')" id="tab-mapa" class="tab-button px-6 py-3 rounded-lg font-semibold whitespace-nowrap transition-all bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-500/50">
+                🗺️ Mapa en Tiempo Real
+            </button>
+            <button onclick="showTab('satelites')" id="tab-satelites" class="tab-button px-6 py-3 rounded-lg font-semibold whitespace-nowrap transition-all bg-slate-800 text-gray-400 hover:bg-slate-700">
+                🛰️ Estado de Satélites
+            </button>
+            <button onclick="showTab('alertas')" id="tab-alertas" class="tab-button px-6 py-3 rounded-lg font-semibold whitespace-nowrap transition-all bg-slate-800 text-gray-400 hover:bg-slate-700">
+                ⚠️ Alertas y Eventos
+            </button>
+            <button onclick="showTab('roi')" id="tab-roi" class="tab-button px-6 py-3 rounded-lg font-semibold whitespace-nowrap transition-all bg-slate-800 text-gray-400 hover:bg-slate-700">
+                💰 Calculadora ROI
+            </button>
+        </div>
+
+        <!-- Contenido de Tabs -->
+        
+        <!-- Tab Mapa -->
+        <div id="content-mapa" class="tab-content">
+            <div class="relative w-full h-96 bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-900 rounded-lg overflow-hidden mb-6">
+                <!-- Mapa base -->
+                <div class="absolute inset-0 opacity-20">
+                    <svg viewBox="0 0 800 400" class="w-full h-full">
+                        <path d="M 450 180 L 520 175 L 530 190 L 515 200 L 445 195 Z" fill="#2a4858"/>
+                        <path d="M 200 120 L 400 110 L 420 130 L 210 135 Z" fill="#2a4858"/>
+                        <path d="M 320 220 L 370 218 L 375 230 L 325 232 Z" fill="#2a4858"/>
+                        <path d="M 550 195 L 600 193 L 605 205 L 555 207 Z" fill="#2a4858"/>
+                    </svg>
+                </div>
+
+                <!-- Manchas de sargazo -->
+                <div id="patch1" class="absolute animate-pulse-custom" style="left: 62%; top: 48%; transform: translate(-50%, -50%);">
+                    <div class="rounded-full bg-orange-500 opacity-60" style="width: 42px; height: 42px;"></div>
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                        450 ton - Alta
+                    </div>
+                </div>
+                <div id="patch2" class="absolute animate-pulse-custom" style="left: 54%; top: 42%; transform: translate(-50%, -50%);">
+                    <div class="rounded-full bg-yellow-500 opacity-60" style="width: 36px; height: 36px;"></div>
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                        320 ton - Media
+                    </div>
+                </div>
+                <div id="patch3" class="absolute animate-pulse-custom" style="left: 66%; top: 54%; transform: translate(-50%, -50%);">
+                    <div class="rounded-full bg-orange-500 opacity-60" style="width: 48px; height: 48px;"></div>
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                        580 ton - Alta
+                    </div>
+                </div>
+                <div id="patch4" class="absolute animate-pulse-custom" style="left: 58%; top: 60%; transform: translate(-50%, -50%);">
+                    <div class="rounded-full bg-green-500 opacity-60" style="width: 29px; height: 29px;"></div>
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                        210 ton - Baja
+                    </div>
+                </div>
+
+                <!-- Satélites -->
+                <div id="sat1" class="absolute" style="left: 50%; top: 50%;">
+                    <svg class="w-6 h-6 text-cyan-300 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18"/>
+                    </svg>
+                </div>
+
+                <!-- Leyenda -->
+                <div class="absolute bottom-4 left-4 bg-black bg-opacity-75 text-white p-3 rounded-lg text-xs">
+                    <div class="flex items-center gap-2 mb-1">
+                        <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                        <span>Alta densidad</span>
+                    </div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <span>Media densidad</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span>Baja densidad</span>
+                    </div>
+                </div>
+
+                <!-- Timestamp -->
+                <div class="absolute top-4 right-4 bg-black bg-opacity-75 text-cyan-300 px-3 py-2 rounded-lg text-sm font-mono" id="timestamp">
+                </div>
+            </div>
+
+            <!-- Detalles de manchas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-4 rounded-lg border border-slate-700">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-semibold text-white">Mancha #1</h4>
+                        <span class="px-2 py-1 rounded text-xs bg-orange-500 text-white">Creciendo</span>
+                    </div>
+                    <div class="space-y-1 text-sm text-gray-300">
+                        <div class="flex justify-between">
+                            <span>Coordenadas:</span>
+                            <span class="text-cyan-400 font-mono">18.5°N, -68.8°W</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Tonelaje estimado:</span>
+                            <span class="text-white font-semibold">450 ton</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Densidad:</span>
+                            <span class="font-semibold text-orange-400">Alta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-4 rounded-lg border border-slate-700">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-semibold text-white">Mancha #2</h4>
+                        <span class="px-2 py-1 rounded text-xs bg-blue-500 text-white">Estable</span>
+                    </div>
+                    <div class="space-y-1 text-sm text-gray-300">
+                        <div class="flex justify-between">
+                            <span>Coordenadas:</span>
+                            <span class="text-cyan-400 font-mono">19.2°N, -70.1°W</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Tonelaje estimado:</span>
+                            <span class="text-white font-semibold">320 ton</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Densidad:</span>
+                            <span class="font-semibold text-yellow-400">Media</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-4 rounded-lg border border-slate-700">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-semibold text-white">Mancha #3</h4>
+                        <span class="px-2 py-1 rounded text-xs bg-orange-500 text-white">Creciendo</span>
+                    </div>
+                    <div class="space-y-1 text-sm text-gray-300">
+                        <div class="flex justify-between">
+                            <span>Coordenadas:</span>
+                            <span class="text-cyan-400 font-mono">17.8°N, -67.5°W</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Tonelaje estimado:</span>
+                            <span class="text-white font-semibold">580 ton</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Densidad:</span>
+                            <span class="font-semibold text-orange-400">Alta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-4 rounded-lg border border-slate-700">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-semibold text-white">Mancha #4</h4>
+                        <span class="px-2 py-1 rounded text-xs bg-green-500 text-white">Decreciendo</span>
+                    </div>
+                    <div class="space-y-1 text-sm text-gray-300">
+                        <div class="flex justify-between">
+                            <span>Coordenadas:</span>
+                            <span class="text-cyan-400 font-mono">16.5°N, -69.2°W</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Tonelaje estimado:</span>
+                            <span class="text-white font-semibold">210 ton</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Densidad:</span>
+                            <span class="font-semibold text-green-400">Baja</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Satélites -->
+        <div id="content-satelites" class="tab-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-4 rounded-lg border border-cyan-800">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18"/>
+                            </svg>
+                            <h3 class="font-semibold text-white">SarSat-1</h3>
+                        </div>
+                        <span class="px-2 py-1 rounded-full text-xs bg-green-500 text-white">Activo</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-gray-300">
+                            <span>Cobertura:</span>
+                            <span class="text-cyan-400 font-semibold">95%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 95%"></div>
+                        </div>
+                        <div class="flex justify-between text-gray-300">
+                            <span>Órbita:</span>
+                            <span class="text-cyan-400 font-mono">LEO - 550km</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-4 rounded-lg border border-cyan-800">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18"/>
+                            </svg>
+                            <h3 class="font-semibold text-white">SarSat-2</h3>
+                        </div>
+                        <span class="px-2 py-1 rounded-full text-xs bg-green-500 text-white">Activo</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-gray-300">
+                            <span>Cobertura:</span>
+                            <span class="text-cyan-400 font-semibold">92%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 92%"></div>
+                        </div>
+                        <div class="flex justify-between text-gray-300">
+                            <span>Órbita:</span>
+                            <span class="text-cyan-400 font-mono">LEO - 550km</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-4 rounded-lg border border-cyan-800">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4m-4-4v18"/>
+                            </svg>
+                            <h3 class="font-semibold text-white">SarSat-3</h3>
+                        </div>
+                        <span class="px-2 py-1 rounded-full text-xs bg-green-500 text-white">Activo</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-gray-300">
+                            <span>Cobertura:</span>
+                            <span class="text-cyan-400 font-semibold">88%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 88%"></div>
+                        </div>
+                        <div class="flex justify-between text-gray-300">
+                            <span>Órbita:</span>
+                            <span class="text-cyan-400 font-mono">LEO - 550km</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Alertas -->
+        <div id="content-alertas" class="tab-content hidden">
+            <div class="space-y-3">
+                <div class="bg-gradient-to-r from-orange-900 to-red-900 p-4 rounded-lg border border-orange-500">
+                    <div class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-orange-300 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-white mb-1">Alerta: Arribazón Masiva Inminente</h4>
+                            <p class="text-sm text-orange-200">Costa Norte, RD - Estimado: 580 ton en 48-72h</p>
+                            <p class="text-xs text-orange-300 mt-2">Zona: Punta Cana - Miches | Prioridad: ALTA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-yellow-900 to-orange-900 p-4 rounded-lg border border-yellow-500">
+                    <div class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-yellow-300 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-white mb-1">Aviso: Crecimiento Detectado</h4>
+                            <p class="text-sm text-yellow-200">Zona Puerto Plata - Estimado: 450 ton (+15% en 24h)</p>
+                            <p class="text-xs text-yellow-300 mt-2">Prioridad: MEDIA | Acción recomendada: Monitoreo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-blue-900 to-cyan-900 p-4 rounded-lg border border-blue-500">
+                    <div class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-blue-300 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-white mb-1">Info: Operación de Recolección</h4>
+                            <p class="text-sm text-blue-200">Flotilla Delta-2 en ruta - ETA: 4 horas</p>
+                            <p class="text-xs text-blue-300 mt-2">Objetivo: 320 ton | Progreso: En camino</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab ROI -->
+        <div id="content-roi" class="tab-content hidden">
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-lg border border-cyan-800">
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Calculadora de ROI
+                </h3>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-300 mb-2">Tonelaje a procesar (ton/mes):</label>
+                    <input 
+                        type="range" 
+                        min="100" 
+                        max="5000" 
+                        step="100"
+                        value="1000"
+                        id="tonelaje-slider"
+                        oninput="updateROI()"
+                        class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+                    />
+                    <div class="text-right text-cyan-400 font-bold text-2xl mt-2">
+                        <span id="tonelaje-display">1,000</span> ton
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="bg-blue-900 bg-opacity-50 p-3 rounded">
+                        <div class="text-gray-400 text-xs mb-1">Fertilizante</div>
+                        <div class="text-white font-semibold" id="ingreso-fertilizante">$75,000</div>
+                    </div>
+                    <div class="bg-green-900 bg-opacity-50 p-3 rounded">
+                        <div class="text-gray-400 text-xs mb-1">Biocombustible</div>
+                        <div class="text-white font-semibold" id="ingreso-biofuel">$7,500</div>
+                    </div>
+                    <div class="bg-purple-900 bg-opacity-50 p-3 rounded">
+                        <div class="text-gray-400 text-xs mb-1">Costos Operacionales</div>
+                        <div class="text-red-300 font-semibold" id="costos">-$50,000</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-cyan-900 to-blue-900 p-3 rounded">
+                        <div class="text-gray-300 text-xs mb-1">Ganancia Neta</div>
+                        <div class="text-green-400 font-bold text-lg" id="ganancia">$32,500</div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-green-600 to-emerald-600 p-4 rounded-lg text-center">
+                    <div class="text-white text-sm mb-1">ROI Mensual Estimado</div>
+                    <div class="text-white font-bold text-3xl" id="roi-display">65.0%</div>
+                </div>
+
+                <div class="mt-4 text-xs text-gray-400 space-y-1">
+                    <div>• Precio fertilizante: $300/ton</div>
+                    <div>• Precio biocombustible: $25/barril equiv.</div>
+                    <div>• Rendimiento: 25% fertilizante, 30% biofuel</div>
+                    <div>• Costo operacional: $50/ton procesada</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-gray-500 text-sm border-t border-gray-800 pt-6">
+            <p>SargassoSpace™ - Economía Circular Espacial-Marina</p>
+            <p class="mt-1">NASA Space Apps Challenge 2025 | Tecnología de Monitoreo LEO</p>
+        </div>
+    </div>
+
+    <script>
+        // Actualizar timestamp
+        function updateTimestamp() {
+            const now = new Date();
+            document.getElementById('timestamp').textContent = now.toLocaleString('es-DO', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+        }
+        updateTimestamp();
+        setInterval(updateTimestamp, 1000);
+
+        // Sistema de tabs
+        function showTab(tabName) {
+            // Ocultar todos los contenidos
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+            
+            // Mostrar el contenido seleccionado
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            
+            // Actualizar estilos de botones
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('bg-gradient-to-r', 'from-cyan-600', 'to-blue-600', 'text-white', 'shadow-lg', 'shadow-cyan-500/50');
+                button.classList.add('bg-slate-800', 'text-gray-400');
+            });
+            
+            // Activar botón seleccionado
+            const activeButton = document.getElementById('tab-' + tabName);
+            activeButton.classList.remove('bg-slate-800', 'text-gray-400');
+            activeButton.classList.add('bg-gradient-to-r', 'from-cyan-600', 'to-blue-600', 'text-white', 'shadow-lg', 'shadow-cyan-500/50');
+        }
+
+        // Calculadora ROI
+        function updateROI() {
+            const tonelaje = parseInt(document.getElementById('tonelaje-slider').value);
+            const precioFertilizante = 300;
+            const precioBiofuel = 25;
+            const costoOperacional = 50;
+            
+            const ingresoFertilizante = tonelaje * 0.25 * precioFertilizante;
+            const ingresoBiofuel = tonelaje * 0.3 * precioBiofuel;
+            const costoTotal = tonelaje * costoOperacional;
+            const ingresoTotal = ingresoFertilizante + ingresoBiofuel;
+            const ganancia = ingresoTotal - costoTotal;
+            const roi = ((ganancia / costoTotal) * 100).toFixed(1);
+            
+            document.getElementById('tonelaje-display').textContent = tonelaje.toLocaleString('es-DO');
+            document.getElementById('ingreso-fertilizante').textContent = ' + ingresoFertilizante.toLocaleString('es-DO');
+            document.getElementById('ingreso-biofuel').textContent = ' + ingresoBiofuel.toLocaleString('es-DO');
+            document.getElementById('costos').textContent = '- + costoTotal.toLocaleString('es-DO');
+            document.getElementById('ganancia').textContent = ' + ganancia.toLocaleString('es-DO');
+            document.getElementById('roi-display').textContent = roi + '%';
+        }
+
+        // Animación de satélites
+        let angle1 = 0, angle2 = 120, angle3 = 240;
+        function animateSatellites() {
+            const centerX = 50;
+            const centerY = 50;
+            const radiusX = 37.5;
+            const radiusY = 18.75;
+            
+            angle1 = (angle1 + 0.5) % 360;
+            angle2 = (angle2 + 0.5) % 360;
+            angle3 = (angle3 + 0.5) % 360;
+            
+            const rad1 = angle1 * Math.PI / 180;
+            const x1 = centerX + Math.cos(rad1) * radiusX;
+            const y1 = centerY + Math.sin(rad1) * radiusY;
+            
+            const sat1 = document.getElementById('sat1');
+            if(sat1) {
+                sat1.style.left = x1 + '%';
+                sat1.style.top = y1 + '%';
+            }
+        }
+        
+        setInterval(animateSatellites, 50);
+        
+        // Inicializar ROI
+        updateROI();
+    </script>
+</body>
+</html>
